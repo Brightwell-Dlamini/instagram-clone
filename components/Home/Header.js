@@ -13,7 +13,7 @@ const Header = () => {
       <TouchableOpacity style={styles.iconsContainer}>
         <Image
           source={{
-            uri: "https://img.icons8.com/small/16/000000/filled-plus-2-math.png",
+            uri: "../../assets/comment.png",
           }}
           style={styles.icon}
         />
@@ -21,18 +21,18 @@ const Header = () => {
       <TouchableOpacity style={styles.iconsContainer}>
         <Image
           source={{
-            uri: "https://img.icons8.com/ios/16/000000/like--v1.png",
+            uri: "../images/comment.png",
           }}
           style={styles.icon}
         />
       </TouchableOpacity>
       <TouchableOpacity style={styles.iconsContainer}>
         <View style={styles.unreadBadge}>
-          <Text style={styles.unreadBadgeText}></Text>
+          <Text style={styles.unreadBadgeText}>11</Text>
         </View>
         <Image
           source={{
-            uri: "https://img.icons8.com/ios/16/000000/facebook-messenger--v1.png",
+            uri: "../images/messenger.svg",
           }}
           style={styles.icon}
         />

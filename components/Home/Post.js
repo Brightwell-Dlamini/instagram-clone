@@ -1,12 +1,22 @@
 import React from "react";
-import { View, Text, Image, StyleSheet } from "react-native";
+import { View, Text, Image, StyleSheet, TouchableOpacity } from "react-native";
 import { Divider } from "react-native-elements";
-
+const postFooterIcons = [
+  {
+    name: "Like",
+    imageUrl: "../images/like.svg",
+    likedImageUrl: "../images/liked.svg",
+  },
+  { name: "Comment", imageUrl: "../../images/comment.svg" },
+  { name: "Share", imageUrl: "../images/share.svg" },
+  { name: "Save", imageUrl: "" },
+];
 const Post = ({ post }) => {
   return (
     <View style={{ marginBottom: 30 }}>
       <Divider width={1} orientation="vertical" />
       <PostHeader post={post} />
+      <PostImage post={post} />
     </View>
   );
 };
@@ -25,11 +35,25 @@ const PostHeader = ({ post }) => (
         {post.user}
       </Text>
     </View>
-    <View>
+    <TouchableOpacity>
       <Text style={{ color: "white", fontWeight: "900" }}>...</Text>
-    </View>
+    </TouchableOpacity>
   </View>
 );
+const PostImage = ({ post }) => (
+  <View
+    style={{
+      width: "100%",
+      height: 450,
+    }}
+  >
+    <Image
+      source={{ uri: post.imageUrl }}
+      style={{ height: "100%", resizeMode: "cover" }}
+    />
+  </View>
+);
+//const PostFooter =( { post })=>();
 const styles = StyleSheet.create({
   story: {
     width: 35,
