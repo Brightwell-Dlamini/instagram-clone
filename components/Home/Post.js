@@ -7,9 +7,18 @@ const postFooterIcons = [
     imageUrl: "../images/like.svg",
     likedImageUrl: "../images/liked.svg",
   },
-  { name: "Comment", imageUrl: "../../images/comment.svg" },
-  { name: "Share", imageUrl: "../images/share.svg" },
-  { name: "Save", imageUrl: "" },
+  {
+    name: "Comment",
+    imageUrl: "../../images/comment.svg",
+  },
+  {
+    name: "Share",
+    imageUrl: "../images/share.svg",
+  },
+  {
+    name: "Save",
+    imageUrl: "../images/save.svg",
+  },
 ];
 const Post = ({ post }) => {
   return (
@@ -17,6 +26,7 @@ const Post = ({ post }) => {
       <Divider width={1} orientation="vertical" />
       <PostHeader post={post} />
       <PostImage post={post} />
+      <PostFooter />
     </View>
   );
 };
@@ -53,7 +63,15 @@ const PostImage = ({ post }) => (
     />
   </View>
 );
-//const PostFooter =( { post })=>();
+const PostFooter = ({ post }) => (
+  <Icon imgStyle={styles.footerIcon} imgUrl={postFooterIcons[0].imageUrl} />
+);
+
+const Icon = (imgStyle, imgUrl) => (
+  <TouchableOpacity>
+    <Image style={imgStyle} source={{ uri: imgUrl }} />
+  </TouchableOpacity>
+);
 const styles = StyleSheet.create({
   story: {
     width: 35,
@@ -62,6 +80,10 @@ const styles = StyleSheet.create({
     marginRight: 6,
     borderWidth: 1.5,
     borderColor: "#ff8501",
+  },
+  footerIcon: {
+    width: 33,
+    height: 300,
   },
 });
 export default Post;
