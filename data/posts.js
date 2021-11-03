@@ -22,7 +22,7 @@ export const POSTS = [
     imageUrl:
       "https://www.thesun.co.uk/wp-content/uploads/2021/10/NINTCHDBPICT000690329045.jpg",
     user: users[1].user,
-    likes: 7870,
+    likes: 9070,
     caption: "Train Ride to Hogwarts.😁📱",
     profile_picture: users[1].image,
     comments: [

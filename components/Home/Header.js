@@ -10,33 +10,29 @@ const Header = () => {
           source={require("../../assets/header-logo.png")}
         />
       </TouchableOpacity>
-      <TouchableOpacity style={styles.iconsContainer}>
-        <Image
-          source={{
-            uri: "../../assets/comment.png",
-          }}
-          style={styles.icon}
-        />
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.iconsContainer}>
-        <Image
-          source={{
-            uri: "../images/comment.png",
-          }}
-          style={styles.icon}
-        />
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.iconsContainer}>
-        <View style={styles.unreadBadge}>
-          <Text style={styles.unreadBadgeText}>11</Text>
-        </View>
-        <Image
-          source={{
-            uri: "../images/messenger.svg",
-          }}
-          style={styles.icon}
-        />
-      </TouchableOpacity>
+      <View style={styles.iconsContainer}>
+        <TouchableOpacity style={styles.icon}>
+          <Image
+            source={require("../../assets/plus.png")}
+            style={styles.icon}
+          />
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.icon}>
+          <Image
+            source={require("../../assets/like.png")}
+            style={styles.icon}
+          />
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.icon}>
+          <View style={styles.unreadBadge}>
+            <Text style={styles.unreadBadgeText}>11</Text>
+          </View>
+          <Image
+            source={require("../../assets/messenger.png")}
+            style={styles.icon}
+          />
+        </TouchableOpacity>
+      </View>
     </View>
   );
 };

@@ -1,23 +1,24 @@
 import React from "react";
 import { View, Text, Image, StyleSheet, TouchableOpacity } from "react-native";
 import { Divider } from "react-native-elements";
+
 const postFooterIcons = [
   {
     name: "Like",
-    imageUrl: "../images/like.svg",
-    likedImageUrl: "../images/liked.svg",
+    imageUrl: "../../assets/like.png",
+    likedImageUrl: "../../assets/liked.png",
   },
   {
     name: "Comment",
-    imageUrl: "../../images/comment.svg",
+    imageUrl: "../../assets/comment.png",
   },
   {
     name: "Share",
-    imageUrl: "../images/share.svg",
+    imageUrl: "../../assets/share.png",
   },
   {
     name: "Save",
-    imageUrl: "../images/save.svg",
+    imageUrl: "../../assets/save.png",
   },
 ];
 const Post = ({ post }) => {
@@ -26,7 +27,13 @@ const Post = ({ post }) => {
       <Divider width={1} orientation="vertical" />
       <PostHeader post={post} />
       <PostImage post={post} />
-      <PostFooter />
+      <View style={{ marginHorizontal: 15, marginTop: 10 }}>
+        <PostFooter />
+        <Likes post={post} />
+        <Caption post={post} />
+        <CommentsSection post={post} />
+        <Comments post={post} />
+      </View>
     </View>
   );
 };
@@ -63,14 +70,69 @@ const PostImage = ({ post }) => (
     />
   </View>
 );
-const PostFooter = ({ post }) => (
-  <Icon imgStyle={styles.footerIcon} imgUrl={postFooterIcons[0].imageUrl} />
+const PostFooter = () => (
+  <View style={{ flexDirection: "row" }}>
+    <View style={styles.leftFooterIconsCOntainer}>
+      <Icon imgStyle={styles.footerIcon} imgUrl={postFooterIcons[0].imageUrl} />
+      <Icon imgStyle={styles.footerIcon} imgUrl={postFooterIcons[1].imageUrl} />
+      <Icon
+        imgStyle={[styles.footerIcon, styles.shareIcon]}
+        imgUrl={postFooterIcons[2].imageUrl}
+      />
+    </View>
+    <View style={{ flex: 1, alignItems: "flex-end" }}>
+      <Icon imgStyle={styles.footerIcon} imgUrl={postFooterIcons[3].imageUrl} />
+    </View>
+  </View>
 );
 
-const Icon = (imgStyle, imgUrl) => (
+const Icon = ({ imgStyle, imgUrl }) => (
   <TouchableOpacity>
     <Image style={imgStyle} source={{ uri: imgUrl }} />
   </TouchableOpacity>
+);
+const Likes = ({ post }) => (
+  <View style={{ flexDirection: "row", marginTop: 4 }}>
+    <Text style={{ color: "white", fontWeight: "600" }}>
+      {post.likes.toLocaleString("en")} Likes
+    </Text>
+  </View>
+);
+const Caption = ({ post }) => (
+  <View style={{ marginTop: 5 }}>
+    <Text style={{ color: "white" }}>
+      <Text style={{ fontWeight: "600" }}>{post.user} </Text>
+      <Text> {post.caption}</Text>
+    </Text>
+  </View>
+);
+const CommentsSection = ({ post }) => (
+  <View style={{ marginTop: 5 }}>
+    {!!post.comments.length && (
+      <Text style={{ color: "grey" }}>
+        View
+        {post.comments.length > 1 ? " all " : ""}
+        {post.comments.length}
+        {""}
+        {post.comments.length > 1 ? " comments" : " comment"}
+      </Text>
+    )}
+  </View>
+);
+// if the are zero comments then dont render component
+// 1 then render component without 'all'
+//more than 1 comments render component with all and plural components
+const Comments = ({ post }) => (
+  <>
+    {post.comments.map((comment, index) => (
+      <View key={index} style={{ flexDirection: "row", marginTop: 5 }}>
+        <Text style={{ color: "white" }}>
+          <Text style={{ fontWeight: "600" }}> {comment.user} </Text>
+          {comment.element}
+        </Text>
+      </View>
+    ))}
+  </>
 );
 const styles = StyleSheet.create({
   story: {
@@ -84,6 +146,15 @@ const styles = StyleSheet.create({
   footerIcon: {
     width: 33,
     height: 300,
+  },
+  leftFooterIconsCOntainer: {
+    flexDirection: "row",
+    width: "32%",
+    justifyContent: "space-between",
+  },
+  shareIcon: {
+    transform: [{ rotate: "320deg" }],
+    marginTop: -3,
   },
 });
 export default Post;
