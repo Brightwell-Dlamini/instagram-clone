@@ -1,7 +1,9 @@
 import React from "react";
-import { View, Text } from "react-native";
+("react-native-safe-area-context");
 import HomeScreen from "./screens/HomeScreen";
+import SignedInStack from "./screens/Navigation";
+import NewPostScreen from "./screens/NewPostScreen";
 
 export default function App() {
-  return <HomeScreen />;
+  return <SignedInStack />;
 }
