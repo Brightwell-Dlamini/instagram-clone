@@ -4,6 +4,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { StyleSheet, Text, View } from "react-native";
 import HomeScreen from "./HomeScreen";
 import NewPostScreen from "./NewPostScreen";
+import LoginScreen from "./LoginScreen";
 
 const Stack = createStackNavigator();
 const screenOptions = {
@@ -13,7 +14,7 @@ const screenOptions = {
 const SignedInStack = () => (
   <NavigationContainer>
     <Stack.Navigator
-      initialRouteName="NewPostScreen"
+      initialRouteName="LoginScreen"
       screenOptions={screenOptions}
     >
       <Stack.Screen
@@ -24,6 +25,11 @@ const SignedInStack = () => (
       <Stack.Screen
         name="NewPostScreen"
         component={NewPostScreen}
+        //options={screenOptions}
+      />
+      <Stack.Screen
+        name="LoginScreen"
+        component={LoginScreen}
         //options={screenOptions}
       />
     </Stack.Navigator>

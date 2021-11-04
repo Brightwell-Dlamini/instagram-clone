@@ -3,7 +3,7 @@ import { Button, Image, StyleSheet, Text, TextInput, View } from "react-native";
 import * as Yup from "yup";
 import { Formik } from "formik";
 import { Divider } from "react-native-elements";
-import ValidUrl from "valid-url";
+import validUrl from "valid-url";
 
 const PLACEHOLDER_IMG =
   "https://media.istockphoto.com/vectors/thumbnail-image-vector-graphic-vector-id1147544807?k=20&m=1147544807&s=612x612&w=0&h=pBhz1dkwsCMq37Udtp9sfxbjaMl27JUapoyYpQm0anc=";
@@ -12,7 +12,7 @@ const uploadPostSchema = Yup.object().shape({
   caption: Yup.string().max(2200, " Caption has reached the character"),
 });
 const FormikPostUploader = ({ navigation }) => {
-  const [thumbanailUrl, setThumbanailUrl] = useState(PLACEHOLDER_IMG);
+  const [thumbnailUrl, setThumbnailUrl] = useState(PLACEHOLDER_IMG);
 
   return (
     <Formik
@@ -36,14 +36,16 @@ const FormikPostUploader = ({ navigation }) => {
         <>
           <View
             style={{
-              margin: 20,
+              margin: 28,
               justifyContent: "space-around",
               flexDirection: "row",
             }}
           >
             <Image
               source={{
-                uri: thumbanailUrl ? thumbanailUrl : PLACEHOLDER_IMG,
+                uri: validUrl.isUri(thumbnailUrl)
+                  ? thumbnailUrl
+                  : PLACEHOLDER_IMG,
               }}
               style={{ width: 100, height: 100 }}
             />
@@ -61,7 +63,7 @@ const FormikPostUploader = ({ navigation }) => {
           </View>
           <Divider width={0.2} orientation="vertical" />
           <TextInput
-            onChange={(e) => setThumbanailUrl(e.nativeEvent.text)}
+            onChange={(e) => setThumbnailUrl(e.nativeEvent.text)}
             placeholder="Enter Image url"
             placeholderTextColor="gray"
             style={{ color: "white", fontSize: 18 }}
